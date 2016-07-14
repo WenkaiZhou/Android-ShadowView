@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
@@ -35,6 +36,7 @@ public class ShadowView extends View {
     private int shadowcolor;
     private int textSize;
     private Rect textBound;
+    private int radius;
 
     private Paint paint;
 
@@ -47,7 +49,7 @@ public class ShadowView extends View {
     private final int RIGHTBOTTOM	= 32;
     private final int LEFTBOTTOM 	= 64;
 
-    private int shadowDirection = RIGHTBOTTOM;
+    private int shadowDirection = LEFTTOP;
     private List<Shadow> shadowList;
 
     public ShadowView(Context context) {
@@ -83,6 +85,10 @@ public class ShadowView extends View {
                 case R.styleable.ShadowView_sv_shadowColor:
                     shadowcolor = a.getColor(attr, Color.BLACK);
                     break;
+                case R.styleable.ShadowView_sv_radius:
+                    radius = a.getDimensionPixelSize(attr, (int) TypedValue
+                            .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0,
+                                    getResources().getDisplayMetrics()));
             }
 
         }
@@ -127,6 +133,7 @@ public class ShadowView extends View {
         }
 
         setMeasuredDimension(width, height);
+
     }
 
     @Override
@@ -134,7 +141,7 @@ public class ShadowView extends View {
          // 将绘制操作保存到新的图层
         paint.setColor(Color.parseColor("#6DD7B5"));
         RectF rect = new RectF(0, 0, getMeasuredWidth(), getMeasuredHeight());
-        canvas.drawRoundRect(rect, 30, 30, paint);
+        canvas.drawRoundRect(rect, radius, radius, paint);
 
         paint.setColor(shadowcolor);
         for (Shadow shadow : shadowList) {
@@ -143,25 +150,57 @@ public class ShadowView extends View {
 
         paint.setColor(textColor);
         canvas.drawText(text, getWidth() / 2 - textBound.width() / 2, getHeight() / 2 + textBound.height() / 2, paint);
+
+        paint.setColor(Color.RED);
+        Path path = new Path();
+        path.moveTo(0, radius);
+        path.addArc(new RectF(0, 0, 2 * radius, 2 * radius), 180, 90);
+        path.lineTo(radius, radius);
+        path.lineTo(0, radius);
+        path.close();
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+        canvas.drawPath(path, paint);
+        paint.setXfermode(null);
+
+//        path.lineTo(getMeasuredWidth() - radius, 0);
+//        path.addArc(new RectF(getMeasuredWidth() - 2 * radius, 0, getMeasuredWidth(), 2 * radius), 270, 90);
+//        path.lineTo(getMeasuredWidth(), getMeasuredHeight() - radius);
+//        path.addArc(new RectF(getMeasuredWidth() - 2 * radius, getMeasuredHeight() - 2 * radius, getMeasuredWidth(), getMeasuredHeight()), 0, 90);
+//        path.lineTo(radius, getMeasuredHeight());
+//        path.addArc(new RectF(0, getMeasuredHeight() - 2 * radius, 2 * radius, getMeasuredHeight()), 90, 90);
+//        path.moveTo(0, radius);
+//        path.close();
+//        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
+//        canvas.drawPath(path, paint);
+//        paint.setXfermode(null);
+
+//        paint.setColor(Color.RED);
+//        Path path = new Path();
+//        path.moveTo(0, radius);
+//        path.addArc(new RectF(0, 0, 2 * radius, 2 * radius), 180, 90);
+//        path.lineTo(getMeasuredWidth() - radius, 0);
+//        path.addArc(new RectF(getMeasuredWidth() - 2 * radius, 0, getMeasuredWidth(), 2 * radius), 270, 90);
+//        path.lineTo(getMeasuredWidth(), getMeasuredHeight() - radius);
+//        path.addArc(new RectF(getMeasuredWidth() - 2 * radius, getMeasuredHeight() - 2 * radius, getMeasuredWidth(), getMeasuredHeight()), 0, 90);
+//        path.lineTo(radius, getMeasuredHeight());
+//        path.addArc(new RectF(0, getMeasuredHeight() - 2 * radius, 2 * radius, getMeasuredHeight()), 90, 90);
+//        path.moveTo(0, radius);
+//        path.close();
+//        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
+//        canvas.drawPath(path, paint);
+//        paint.setXfermode(null);
+
+//        Path path1 = new Path();
+//        path1.moveTo(0, 0);
+//        path1.lineTo(0, radius);
+//        path1.addArc(new RectF(0, 0, 2 * radius, 2 * radius), 180, 90);
+//        path1.lineTo(0, 0);
+//        path1.close();
+//        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+//        canvas.drawPath(path1, paint);
+//        paint.setXfermode(null);
     }
 
-    public static Bitmap toRoundCorner(Bitmap bitmap, int pixels) {
-        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
-                bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(output);
-        final int color = 0xff424242;
-        final Paint paint = new Paint();
-        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-        final RectF rectF = new RectF(rect);
-        final float roundPx = pixels;
-        paint.setAntiAlias(true);
-        canvas.drawARGB(0, 0, 0, 0);
-        paint.setColor(color);
-        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        canvas.drawBitmap(bitmap, rect, rect, paint);
-        return output;
-    }
     private void calcShadow() {
         shadowList = new ArrayList<>(shadowSize);
         for (int i = 0, len = shadowSize; i < len; i++) {
@@ -179,9 +218,10 @@ public class ShadowView extends View {
 //					textshadow += '0 ' + i + 'px 0 ' + color + ',';
 //					break;
 //
-//				case LEFTTOP:
+				case LEFTTOP:
 //					textshadow += -i + 'px ' + -i + 'px 0 ' + color + ',';
-//					break;
+                    shadowList.add(new Shadow(1, -i, -i, defaultShadowColor));
+					break;
 //				case RIGHTTOP:
 //					textshadow += i + 'px ' + -i + 'px 0 ' + color + ',';
 //					break;

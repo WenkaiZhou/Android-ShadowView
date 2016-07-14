@@ -7,6 +7,7 @@
         <attr name="sv_textColor" format="color" />
         <attr name="sv_shadowColor" format="color" />
         <attr name="sv_textSize" format="dimension" />
+        <attr name="sv_radius" format="dimension" />
     </declare-styleable>
 
 </resources>

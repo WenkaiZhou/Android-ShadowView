@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#eeeeee"
     tools:context="com.kevin.shadowview.MainActivity">
 
     <com.kevin.shadowview.ShadowView
@@ -15,9 +16,9 @@
         android:layout_height="100dp"
         android:layout_centerInParent="true"
         zwenkai:sv_background="#6DD7B5"
-        android:background="@drawable/background"
         zwenkai:sv_shadowColor="#3e9277"
         zwenkai:sv_text="S"
+        zwenkai:sv_radius="30dp"
         zwenkai:sv_textColor="#FFE6D4"
         zwenkai:sv_textSize="60sp" />
 </RelativeLayout>
