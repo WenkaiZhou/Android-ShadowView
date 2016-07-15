@@ -4,21 +4,90 @@
     xmlns:zwenkai="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#eeeeee"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#eeeeee"
     tools:context="com.kevin.shadowview.MainActivity">
 
-    <com.kevin.shadowview.ShadowView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerInParent="true"
-        zwenkai:sv_background="#6DD7B5"
-        zwenkai:sv_shadowColor="#3e9277"
-        zwenkai:sv_text="S"
-        zwenkai:sv_radius="30dp"
-        zwenkai:sv_textColor="#FFE6D4"
-        zwenkai:sv_textSize="60sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.kevin.shadowview.ShadowView
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            android:background="#e96b5e"
+            zwenkai:sv_direction="rightbottom"
+            zwenkai:sv_shadowColor="#a13c32"
+            zwenkai:sv_shadowSize="60dp"
+            zwenkai:sv_text="S"
+            zwenkai:sv_textColor="#FFE6D4"
+            zwenkai:sv_textSize="60sp" />
+
+        <com.kevin.shadowview.ShadowView
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            android:layout_marginLeft="4dp"
+            android:background="#fbbc85"
+            zwenkai:sv_direction="leftbottom"
+            zwenkai:sv_shadowColor="#af7a4b"
+            zwenkai:sv_shadowSize="50dp"
+            zwenkai:sv_text="H"
+            zwenkai:sv_textColor="#FFE6D4"
+            zwenkai:sv_textSize="60sp" />
+
+        <com.kevin.shadowview.ShadowView
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            android:layout_marginLeft="4dp"
+            android:background="#c3d377"
+            zwenkai:sv_direction="top"
+            zwenkai:sv_shadowColor="#828f46"
+            zwenkai:sv_shadowSize="16dp"
+            zwenkai:sv_text="A"
+            zwenkai:sv_textColor="#FFE6D4"
+            zwenkai:sv_textSize="60sp" />
+
+        <com.kevin.shadowview.ShadowView
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            android:layout_marginLeft="4dp"
+            android:background="#5ea4a4"
+            zwenkai:sv_direction="bottom"
+            zwenkai:sv_shadowColor="#3b6767"
+            zwenkai:sv_shadowSize="16dp"
+            zwenkai:sv_text="D"
+            zwenkai:sv_textColor="#FFE6D4"
+            zwenkai:sv_textSize="60sp" />
+
+        <com.kevin.shadowview.ShadowView
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            android:layout_marginLeft="4dp"
+            android:background="#6dd7b5"
+            zwenkai:sv_direction="righttop"
+            zwenkai:sv_shadowColor="#3e9277"
+            zwenkai:sv_shadowSize="50dp"
+            zwenkai:sv_text="O"
+            zwenkai:sv_textColor="#FFE6D4"
+            zwenkai:sv_textSize="60sp" />
+
+        <com.kevin.shadowview.ShadowView
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            android:layout_marginLeft="4dp"
+            android:background="#8787c4"
+            zwenkai:sv_direction="lefttop"
+            zwenkai:sv_shadowColor="#525283"
+            zwenkai:sv_shadowSize="50dp"
+            zwenkai:sv_text="W"
+            zwenkai:sv_textColor="#FFE6D4"
+            zwenkai:sv_textSize="60sp" />
+
+    </LinearLayout>
+
+
 </RelativeLayout>

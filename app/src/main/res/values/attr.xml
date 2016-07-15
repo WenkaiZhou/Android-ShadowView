@@ -3,11 +3,21 @@
 
     <declare-styleable name="ShadowView">
         <attr name="sv_text" format="string" />
-        <attr name="sv_background" format="color" />
         <attr name="sv_textColor" format="color" />
         <attr name="sv_shadowColor" format="color" />
         <attr name="sv_textSize" format="dimension" />
-        <attr name="sv_radius" format="dimension" />
+        <attr name="sv_shadowSize" format="dimension" />
+        <attr name="sv_direction">
+            <flag name="left" value="0x00" />
+            <flag name="top" value = "0x01" />
+            <flag name="right" value = "0x02" />
+            <flag name="bottom" value = "0x04" />
+            <flag name="lefttop" value = "0x08" />
+            <flag name="righttop" value = "0x10" />
+            <flag name="rightbottom" value = "0x20" />
+            <flag name="leftbottom" value = "0x40" />
+        </attr>
+
     </declare-styleable>
 
 </resources>
