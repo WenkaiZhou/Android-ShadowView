@@ -56,31 +56,24 @@ public class ShadowView extends View {
         int n = a.getIndexCount();
         for (int i = 0; i < n; i++) {
             int attr = a.getIndex(i);
-            switch (attr) {
-                case R.styleable.ShadowView_sv_text:
-                    text = a.getString(attr);
-                    break;
-                case R.styleable.ShadowView_sv_textColor:
-                    textColor = a.getColor(attr, Color.BLACK);
-                    break;
-                case R.styleable.ShadowView_sv_textSize:
-                    textSize = a.getDimensionPixelSize(attr, (int) TypedValue
-                            .applyDimension(TypedValue.COMPLEX_UNIT_SP, 16,
-                                    getResources().getDisplayMetrics()));
-                    break;
-                case R.styleable.ShadowView_sv_shadowColor:
-                    shadowColor = a.getColor(attr, Color.BLACK);
-                    break;
-                case R.styleable.ShadowView_sv_shadowSize:
-                    shadowSize = a.getDimensionPixelSize(attr, (int) TypedValue
-                            .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0,
-                                    getResources().getDisplayMetrics()));
-                    break;
-                case R.styleable.ShadowView_sv_direction:
-                    shadowDirection = a.getInt(attr, RIGHTBOTTOM);
-                    break;
-            }
 
+            if (attr == R.styleable.ShadowView_sv_text) {
+                text = a.getString(attr);
+            } else if (attr == R.styleable.ShadowView_sv_textColor) {
+                textColor = a.getColor(attr, Color.BLACK);
+            } else if (attr == R.styleable.ShadowView_sv_textSize) {
+                textSize = a.getDimensionPixelSize(attr, (int) TypedValue
+                        .applyDimension(TypedValue.COMPLEX_UNIT_SP, 16,
+                                getResources().getDisplayMetrics()));
+            } else if (attr == R.styleable.ShadowView_sv_shadowColor) {
+                shadowColor = a.getColor(attr, Color.BLACK);
+            } else if (attr == R.styleable.ShadowView_sv_shadowSize) {
+                shadowSize = a.getDimensionPixelSize(attr, (int) TypedValue
+                        .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0,
+                                getResources().getDisplayMetrics()));
+            } else if (attr == R.styleable.ShadowView_sv_direction) {
+                shadowDirection = a.getInt(attr, RIGHTBOTTOM);
+            }
         }
         a.recycle();
 

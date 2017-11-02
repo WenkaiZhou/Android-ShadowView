@@ -12,10 +12,10 @@
             <flag name="top" value = "0x01" />
             <flag name="right" value = "0x02" />
             <flag name="bottom" value = "0x04" />
-            <flag name="lefttop" value = "0x08" />
-            <flag name="righttop" value = "0x10" />
-            <flag name="rightbottom" value = "0x20" />
-            <flag name="leftbottom" value = "0x40" />
+            <flag name="left_top" value = "0x08" />
+            <flag name="right_top" value = "0x10" />
+            <flag name="right_bottom" value = "0x20" />
+            <flag name="left_bottom" value = "0x40" />
         </attr>
 
     </declare-styleable>

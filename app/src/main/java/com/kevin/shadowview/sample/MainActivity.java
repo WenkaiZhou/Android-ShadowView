@@ -1,4 +1,4 @@
-package com.kevin.shadowview;
+package com.kevin.shadowview.sample;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
